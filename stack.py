@@ -8,9 +8,11 @@ class Stack:
 
     def pop_off_stack(self):
         return self.buf.pop()
+
     def clear(self):
         for i in range(0, len(self.buf)):
             self.buf.pop()
+
     def peek(self):
         return self.buf[len(self.buf)-1]
 

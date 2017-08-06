@@ -7,11 +7,14 @@ buff = stack.Stack()
 def get_third():
     return buff.third()
 
+
 def get_second():
     return buff.second()
 
+
 def get_first():
     return buff.peek()
+
 
 def proc_number(n):
 
@@ -28,6 +31,7 @@ def on_plus():
     buff.push_on_stack(reg_x+reg_z)
     return buff.peek()
 
+
 def on_minus():
 
     reg_x = buff.peek()
@@ -36,6 +40,7 @@ def on_minus():
     buff.pop_off_stack()
     buff.push_on_stack(reg_z-reg_x)
     return buff.peek()
+
 
 def on_multiply():
 
@@ -46,6 +51,7 @@ def on_multiply():
     buff.push_on_stack(reg_z*reg_x)
     return buff.peek()
 
+
 def on_divide():
 
     reg_x = buff.peek()
@@ -54,6 +60,7 @@ def on_divide():
     buff.pop_off_stack()
     buff.push_on_stack(reg_z/reg_x)
     return buff.peek()
+
 
 def on_pow():
 
@@ -64,12 +71,22 @@ def on_pow():
     buff.push_on_stack(pow(reg_z, reg_x))
     return buff.peek()
 
+
 def on_sqrt():
 
     reg_x = buff.peek()
     buff.pop_off_stack()
     buff.push_on_stack(sqrt(reg_x))
     return buff.peek()
+
+
+def is_int(i):
+    try:
+        int(i)
+        return True
+    except ValueError:
+        return False
+
 
 def is_float(f):
     try:
@@ -78,11 +95,14 @@ def is_float(f):
     except ValueError:
         return False
 
+
 def on_ac():
         buff.clear()
 
+
 def on_pop():
     buff.pop_off_stack()
+
 
 def change_sign():
     reg_x = buff.peek()

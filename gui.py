@@ -9,14 +9,7 @@ problem z literami (raz działa raz nie)
 
 from tkinter import *
 import calculator
-
-def is_int(i):
-    try:
-        int(i)
-        return True
-    except Exception as e:
-        return False
-
+import helpmenu as hm
 
 mainWindow = Tk()
 mainWindow.title("RPN Calculator")
@@ -27,6 +20,14 @@ mainWindow.grid_rowconfigure(0, weight=1)
 mainWindow.grid_rowconfigure(12, weight=1)
 mainWindow.grid_columnconfigure(0, weight=1)
 mainWindow.grid_columnconfigure(5, weight=1)
+menu = Menu(mainWindow)
+mainWindow.config(menu=menu)
+
+helpMenu = Menu(menu)
+menu.add_cascade(label="Help", menu=helpMenu)
+helpMenu.add_command(label="How to use it...", command=hm.how_to)
+helpMenu.add_command(label="About", command=hm.about_window)
+
 
 # declaration and positioning labels (in which current stack values will be displayed), entry field and
 # - lets call it - registers flags
@@ -36,7 +37,11 @@ input_field = Entry(mainWindow, width=30, justify=RIGHT)
 def on_validate(S):
 
     input_field.delete("1", "end")
-    if is_int(S) or S == "." or calculator.is_float(S):
+    if calculator.is_int(S):
+        return True
+    elif calculator.is_float(S):
+        return True
+    elif S == ".":
         return True
     else:
         return False
@@ -55,10 +60,10 @@ input_field.focus()
 abcd_flags = [0, 0, 0]
 
 
-def on_clear(s):
-    if s == "c":
+def on_clear(char):
+    if char == "c":
         input_field.delete(0, END)
-    elif s == "ac":
+    elif char == "ac":
         a_reg_label.config(text="0")
         b_reg_label.config(text="0")
         c_reg_label.config(text="0")
@@ -285,4 +290,3 @@ enter_button.grid(column=3, row=10, columnspan=2)
 
 
 mainWindow.mainloop()
-
