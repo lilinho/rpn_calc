@@ -1,12 +1,3 @@
-"""
-TODO:
-
-nie usuwa liczb dwucyfrowych z entry
-problem z literami (raz działa raz nie)
-
-
-"""
-
 from tkinter import *
 import calculator
 import helpmenu as hm
