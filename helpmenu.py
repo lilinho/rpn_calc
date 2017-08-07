@@ -8,7 +8,7 @@ def about_window():
     aboutwindow.resizable(width=False, height=False)
     about_label = Label(aboutwindow,
                         text="\n \nRPN Calculator \n \n Copyright \n "
-                             "Tomasz 'lilinho' Pawelec (2017) \n \n Version 0.9")
+                             "Tomasz 'lilinho' Pawelec (2017) \n \n Version 1.0")
     about_label.pack()
     aboutwindow.mainloop()
 

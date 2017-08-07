@@ -31,20 +31,16 @@ helpMenu.add_command(label="About", command=hm.about_window)
 
 # declaration and positioning labels (in which current stack values will be displayed), entry field and
 # - lets call it - registers flags
-input_field = Entry(mainWindow, width=30, justify=RIGHT)
 
 
-def on_validate(S):
+def on_validate(s):
 
-    input_field.delete("1", "end")
-    if calculator.is_int(S):
-        return True
-    elif calculator.is_float(S):
-        return True
-    elif S == ".":
+    if calculator.is_int(s) or calculator.is_float(s) or s == ".":
         return True
     else:
+        mainWindow.bell()
         return False
+
 
 validate_cmd = (mainWindow.register(on_validate), '%S')
 
@@ -54,7 +50,7 @@ b_reg_label = Label(mainWindow, text="0")
 b_reg_label.grid(column=3, row=2, columnspan=4, sticky=E)
 c_reg_label = Label(mainWindow, text="0")
 c_reg_label.grid(column=3, row=1, columnspan=4, sticky=E)
-input_field.config(validate="key", validatecommand=validate_cmd)
+input_field = Entry(mainWindow, width=30, justify=RIGHT, validate="key", validatecommand=validate_cmd)
 input_field.grid(row=4, column=1, columnspan=4, pady=5)
 input_field.focus()
 abcd_flags = [0, 0, 0]
@@ -74,7 +70,7 @@ def on_clear(char):
 
 
 def on_enter():
-    if not input_field.get() == "":
+    if input_field.get() != "":
         try:
             num = int(input_field.get())
         except ValueError:
